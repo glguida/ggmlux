@@ -1,3 +1,27 @@
+examples: simple-ctx simple-backend mnist-eval mnist-train
+	@echo Done making examples
+
+simple-ctx: ggml/examples/simple/simple-ctx.cpp libggml.a \
+	$(OBJ_ALL)
+	$(CXX) $(CXXFLAGS) -c $< -o $(call GET_OBJ_FILE, $<)
+	$(CXX) $(CXXFLAGS) $(filter-out %.h $<,$^) $(call GET_OBJ_FILE, $<) libggml.a -o $@ $(LDFLAGS)
+	
+simple-backend: ggml/examples/simple/simple-backend.cpp libggml.a \
+	$(OBJ_ALL)
+	$(CXX) $(CXXFLAGS) -c $< -o $(call GET_OBJ_FILE, $<)
+	$(CXX) $(CXXFLAGS) $(filter-out %.h $<,$^) $(call GET_OBJ_FILE, $<) libggml.a -o $@ $(LDFLAGS)
+
+mnist-eval: ggml/examples/mnist/mnist-eval.cpp ggml/examples/mnist/mnist-common.cpp libggml.a \
+	$(OBJ_ALL)
+	$(CXX) $(CXXFLAGS) -c $< -o $(call GET_OBJ_FILE, $<)
+	$(CXX) $(CXXFLAGS) $(filter-out %.h $<,$^) $(call GET_OBJ_FILE, $<) libggml.a -o $@ $(LDFLAGS)
+
+mnist-train: ggml/examples/mnist/mnist-train.cpp ggml/examples/mnist/mnist-common.cpp libggml.a \
+	$(OBJ_ALL)
+	$(CXX) $(CXXFLAGS) -c $< -o $(call GET_OBJ_FILE, $<)
+	$(CXX) $(CXXFLAGS) $(filter-out %.h $<,$^) $(call GET_OBJ_FILE, $<) libggml.a -o $@ $(LDFLAGS)
+
+
 # Define the default target now so that it is always the first target
 BUILD_TARGETS = \
 	libllava.a \
