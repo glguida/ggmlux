@@ -393,7 +393,6 @@ endif
 WARN_FLAGS = \
 	-Wall \
 	-Wextra \
-	-Wpedantic \
 	-Wcast-qual \
 	-Wno-unused-function
 
