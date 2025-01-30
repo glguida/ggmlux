@@ -1125,7 +1125,7 @@ $(LIB_GGML): \
 
 $(LIB_GGML_S): \
 	$(OBJ_GGML)
-	ar rcs $(LIB_GGML_S) $^
+	$(AR) rcs $(LIB_GGML_S) $^
 
 # llama
 
@@ -1184,7 +1184,7 @@ $(LIB_LLAMA): \
 
 $(LIB_LLAMA_S): \
 	$(OBJ_LLAMA)
-	ar rcs $(LIB_LLAMA_S) $^
+	$(AR) rcs $(LIB_LLAMA_S) $^
 
 # common
 
@@ -1242,7 +1242,7 @@ $(LIB_COMMON): \
 
 $(LIB_COMMON_S): \
 	$(OBJ_COMMON)
-	ar rcs $(LIB_COMMON_S) $^
+	$(AR) rcs $(LIB_COMMON_S) $^
 
 clean:
 	rm -vrf *.dot $(BUILD_TARGETS) $(TEST_TARGETS)
